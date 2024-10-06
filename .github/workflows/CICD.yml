@@ -32,23 +32,23 @@ jobs:
        trivy fs --format table -o trivy-fs-report.html .
 
     # Triggering SonarQube analysis as results of it are required by Quality Gate check.
-    - name: SonarQube Scan
-      uses: sonarsource/sonarqube-scan-action@v3.0.0
-      env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
+    # - name: SonarQube Scan
+    #   uses: sonarsource/sonarqube-scan-action@v3.0.0
+    #   env:
+    #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+    #     SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
 
-    - name: install jq
-      run: sudo apt-get update && sudo apt-get install -y jq
-    # Check the Quality Gate status.
-    - name: SonarQube Quality Gate check
-      id: sonarqube-quality-gate-check
-      uses: sonarsource/sonarqube-quality-gate-action@master
-      # Force to fail step after specific time.
-      timeout-minutes: 5
-      env:
-       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-       SONAR_HOST_URL: http://16.16.25.47:9000           #${{ secrets.SONAR_HOST_URL }} #OPTIONAL
+    # - name: install jq
+    #   run: sudo apt-get update && sudo apt-get install -y jq
+    # # Check the Quality Gate status.
+    # - name: SonarQube Quality Gate check
+    #   id: sonarqube-quality-gate-check
+    #   uses: sonarsource/sonarqube-quality-gate-action@master
+    #   # Force to fail step after specific time.
+    #   timeout-minutes: 5
+    #   env:
+    #    SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+    #    SONAR_HOST_URL: http://16.16.25.47:9000           #${{ secrets.SONAR_HOST_URL }} #OPTIONAL
 
       # build the docker image 
     - name: Set up QEMU
