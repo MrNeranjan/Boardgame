@@ -48,7 +48,7 @@ jobs:
       timeout-minutes: 5
       env:
        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-       SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }} #OPTIONAL
+       SONAR_HOST_URL: http://16.16.25.47:9000           #${{ secrets.SONAR_HOST_URL }} #OPTIONAL
 
       # build the docker image 
     - name: Set up QEMU
