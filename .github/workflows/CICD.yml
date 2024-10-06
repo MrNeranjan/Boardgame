@@ -82,7 +82,9 @@ jobs:
       uses: tale/kubectl-action@v1
       with:
        base64-kube-config: ${{ secrets.KUBE_CONFIG }}
-    - run: |
-       kubectl apply -f deployment-service.yaml -n webapps
-       kubectl get svc -n webapps
+    - name: Apply Kubernetes Deployment and Service
+      run: |
+        kubectl apply -f deployment-service.yaml -n webapps
+        kubectl rollout status deployment/boardgame-deployment -n webapps
+        kubectl get svc -n webapps
   
